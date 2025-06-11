@@ -19,7 +19,7 @@ app.use("/admin", adminRouter);
 
 async function connectdb() {
   try {
-    await mongoose.connect();
+    await mongoose.connect(process.env.DB_URI);
     app.listen(port);
   } catch {
     console.log("Database Connection Error!");

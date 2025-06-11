@@ -1,0 +1,15 @@
+div{
+
+    background-color:rgb(182, 51, 165);
+}
+body{
+    background-color:rgb(59, 136, 186)
+}
+.centered-text{
+
+text-align:center;
+font-size:25px;
+font-weight:bold;
+color:rgb(229, 219, 219);
+
+}
