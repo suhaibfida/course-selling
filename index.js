@@ -13,6 +13,7 @@ const { UserModel } = require("./db");
 const { CourseModel } = require("./db");
 const { PurchasesModel } = require("./db");
 
+app.use(express.static(__dirname + "/public"));
 app.use("/user", userRouter);
 app.use("/course", courseRouter);
 app.use("/admin", adminRouter);
