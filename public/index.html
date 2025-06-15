@@ -1,28 +1,38 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Coursei</title>
+    <title>COURSIE</title>
     <link rel="stylesheet" href="css/main.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.9.0/axios.min.js"></script>
   </head>
   <body>
     <div>
-      <div class="centered-text">.....</div>
       <div class="centered-text">
-        <div>Signup</div>
-        <input id="signU" placeholder="Username" type="text" />
-        <input id="signP" placeholder="Password" type="text" />
-        <button onclick="signup()">Signup</button>
+        <span style="font-size: 50px; color: rgb(242, 249, 118)">COURSIE</span>
+        <hr />
+        <div id="signupSection" style="display: none" class="centered-text">
+          <div>Signup</div>
+          <input id="signU" placeholder="Username" type="text" />
+          <input id="signP" placeholder="Password" type="text" />
+          <input id="signF" placeholder="First Name" type="text" />
+          <input id="signL" placeholder="Last Name" type="text" />
+          <button onclick="signup()">Signup</button>
+        </div>
       </div>
-
-      <div class="centered-text">
-        <div>Login</div>
+      <div id="hideLogin" class="centered-text">
+        <div class="login-text">.....Login.......</div>
         <input id="loginU" placeholder="Username" type="text" />
         <input id="loginP" placeholder="Password" type="text" />
         <button onclick="login()">Login</button>
       </div>
+      <div>
+        <button id="crb" onclick="showSignup()">Create account</button>
+        <button style="display: none" id="arb" onclick="showLogin()">
+          Already have an account
+        </button>
+      </div>
     </div>
-
+    <h5>Suhaib Fida</h5>
     <script src="js/config.js"></script>
     <script src="js/main.js"></script>
   </body>

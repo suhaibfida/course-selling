@@ -11,62 +11,55 @@ const userRouter = Router();
 userRouter.use(express.json());
 userRouter.post("/signup", async (req, res) => {
   const User = z.object({
-    email: z
-      .string()
-      .min(7)
-      .max(25)
-      .refine(
-        (val) => {
-          return /[a-zA-Z0-9]/.test(val);
-        },
-        {
-          message: "Password must include @, number, capital letters",
-        }
-      ),
+    email: z.string().email().min(7).max(50),
     password: z
       .string()
       .min(7)
       .max(25)
       .refine(
-        (val) => {
-          return /[a-zA-Z0-9@]/.test(val);
-        },
+        (val) => /[A-Z]/.test(val) && /[0-9]/.test(val) && /[@]/.test(val),
         {
-          message: "Password must include @, number, capital letters",
+          message: "Password must include a capital letter, a number, and '@'",
         }
       ),
     firstName: z.string().min(3).max(9),
     lastName: z.string().min(3).max(8),
   });
+
   const safeparse = User.safeParse(req.body);
   if (!safeparse.success) {
-    return res.json({
-      message: "Incorect format",
+    console.log("Zod validation failed:", safeparse.error.format());
+    return res.status(400).json({
+      message: "Incorrect format",
+      errors: safeparse.error.format(),
     });
   }
+
   const { email, password, firstName, lastName } = req.body;
 
   const hashpasswd = await bcrypt.hash(password, 5);
+
   try {
     await UserModel.create({
-      email: email,
+      email,
       password: hashpasswd,
-      firstName: firstName,
-      lastName: lastName,
+      firstName,
+      lastName,
     });
 
-    res.json({
-      message: "signup endpoint.",
-    });
+    res.json({ message: "Signup successful." });
   } catch (err) {
-    console.error(err);
-    res.json({
-      message: "SgnUp failed",
+    console.error("MongoDB error:", err);
+    res.status(500).json({
+      message: "Signup failed",
+      error: err.message,
     });
   }
 });
+
 userRouter.post("/login", async (req, res) => {
   const { email, password } = req.body;
+  console.log(email);
   const response = await UserModel.findOne({
     email: email,
   });
@@ -77,12 +70,13 @@ userRouter.post("/login", async (req, res) => {
   }
   const hash = await bcrypt.compare(password, response.password);
   if (hash) {
-    const token = jwt.sign({ id: response._id, Jsecret }, jwtSecret);
+    const token = jwt.sign({ id: response._id, Jsecret }, Jsecret);
     res.json({
       token: token,
     });
   } else {
     res.json({ mesage: "password did not match" });
+    conole.log("password incorrect");
   }
 });
 userRouter.get("/showpurchases", async (req, res) => {
