@@ -3,6 +3,8 @@ function showSignup() {
   document.getElementById("hideLogin").style.display = "none";
   document.getElementById("crb").style.display = "none";
   document.getElementById("arb").style.display = "block";
+
+  // Login page
 }
 function showLogin() {
   document.getElementById("signupSection").style.display = "none";
@@ -36,8 +38,12 @@ async function login() {
       password,
     }
   );
-
-  const tok = localStorage.setItem("token", token.data.token);
-
-  alert("you are logged in");
+  if (token) {
+    const tok = localStorage.setItem("token", token.data.token);
+    alert("you are logged in");
+    window.location.href = "/homepage.html";
+  } else {
+    alert("email or paswword is incorrect");
+  }
 }
+// Purchases page
