@@ -42,8 +42,22 @@ async function login() {
     const tok = localStorage.setItem("token", token.data.token);
     alert("you are logged in");
     window.location.href = "/homepage.html";
+    showCourses();
   } else {
     alert("email or paswword is incorrect");
   }
 }
-// Purchases page
+// show courses on homepage
+
+async function showCourses() {
+  const showC = await axios.post(
+    `http://localhost${BACKEND_PORT}/showpurchases`,
+    {},
+    {
+      headers: {
+        token: localStorage.getItem("token"),
+      },
+    }
+  );
+  document.getElementById("show-courses").innerHTML = showC.data;
+}

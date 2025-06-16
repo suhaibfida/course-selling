@@ -7,6 +7,7 @@ const bcrypt = require("bcrypt");
 const { UserModel, PurchasesModel } = require("../db");
 const { z } = require("zod");
 const userRouter = Router();
+const { userMiddleware } = require("../middlewares/user");
 
 userRouter.use(express.json());
 userRouter.post("/signup", async (req, res) => {
