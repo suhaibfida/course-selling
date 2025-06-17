@@ -51,7 +51,7 @@ async function login() {
 
 async function showCourses() {
   const showC = await axios.post(
-    `http://localhost${BACKEND_PORT}/showpurchases`,
+    `http://localhost${BACKEND_PORT}/user/showpurchases`,
     {},
     {
       headers: {
@@ -60,4 +60,19 @@ async function showCourses() {
     }
   );
   document.getElementById("show-courses").innerHTML = showC.data;
+}
+// purchase courses homepage
+async function purchase() {
+  await axios.post(
+    `http://localhost:${BACKEND_PORT}/course/purchase`,
+    {
+      courseId: document.getElementById("course-id").value,
+    },
+    {
+      headers: {
+        token: localStorage.getItem("token"),
+      },
+    }
+  );
+  alert("course bought successfully");
 }

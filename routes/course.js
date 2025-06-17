@@ -17,17 +17,10 @@ courseRouter.post("/purchase", userMiddleware, async (req, res) => {
   });
 });
 courseRouter.get("/courses", async (req, res) => {
-  const userId = req.userId;
-  const show = await PurchasesModel.find({
-    userId,
-  });
-  const showc = await CourseModel.find({
-    _id: { $in: show.map((x) => x.userId) },
-  });
+  const preview = await CourseModel.find({});
 
   res.json({
-    show,
-    showc,
+    preview,
   });
 });
 

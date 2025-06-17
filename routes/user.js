@@ -80,15 +80,18 @@ userRouter.post("/login", async (req, res) => {
     conole.log("password incorrect");
   }
 });
-userRouter.get("/showpurchases", async (req, res) => {
+userRouter.get("/preview", userMiddleware, async (req, res) => {
   const userId = req.userId;
-
-  const purchases = await PurchasesModel.find({
+  const show = await PurchasesModel.find({
     userId,
+  });
+  const showc = await CourseModel.find({
+    _id: { $in: show.map((x) => x.userId) },
   });
 
   res.json({
-    purchases,
+    show,
+    showc,
   });
 });
 module.exports = {
