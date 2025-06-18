@@ -61,7 +61,7 @@ async function showCourses() {
   );
   document.getElementById("show-courses").innerHTML = showC.data;
 }
-// purchase courses homepage
+// purchase a courses
 async function purchase() {
   await axios.post(
     `http://localhost:${BACKEND_PORT}/course/purchase`,
@@ -75,4 +75,8 @@ async function purchase() {
     }
   );
   alert("course bought successfully");
+}
+// admin login
+async function signup() {
+  await axios.post(`http://localhost:3000${BACKEND_PORT}`, {});
 }
