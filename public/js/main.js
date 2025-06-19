@@ -3,8 +3,6 @@ function showSignup() {
   document.getElementById("hideLogin").style.display = "none";
   document.getElementById("crb").style.display = "none";
   document.getElementById("arb").style.display = "block";
-
-  // Login page
 }
 function showLogin() {
   document.getElementById("signupSection").style.display = "none";
@@ -12,7 +10,7 @@ function showLogin() {
   document.getElementById("arb").style.display = "none";
   document.getElementById("crb").style.display = "block";
 }
-
+// Login page & signup page
 async function signup() {
   const email = document.getElementById("signU").value;
   const password = document.getElementById("signP").value;
@@ -47,11 +45,11 @@ async function login() {
     alert("email or paswword is incorrect");
   }
 }
-// show courses on homepage
+// show user courses on homepage
 
 async function showCourses() {
   const showC = await axios.post(
-    `http://localhost${BACKEND_PORT}/user/showpurchases`,
+    `http://localhost${BACKEND_PORT}/user/preview`,
     {},
     {
       headers: {
@@ -76,7 +74,6 @@ async function purchase() {
   );
   alert("course bought successfully");
 }
+// show all courses without login
+
 // admin login
-async function signup() {
-  await axios.post(`http://localhost:3000${BACKEND_PORT}`, {});
-}
