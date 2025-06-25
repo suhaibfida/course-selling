@@ -49,7 +49,7 @@ async function login() {
 
 async function showCourses() {
   const showC = await axios.post(
-    `http://localhost${BACKEND_PORT}/user/preview`,
+    `http://localhost:${BACKEND_PORT}/user/preview`,
     {},
     {
       headers: {
@@ -74,6 +74,5 @@ async function purchase() {
   );
   alert("course bought successfully");
 }
-// show all courses without login
 
 // admin login
