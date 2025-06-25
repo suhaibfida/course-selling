@@ -47,18 +47,18 @@ async function login() {
   }
 }
 // show user courses on homepage
-async function showCourses() {
-  const showC = await axios.post(
-    `http://localhost:${BACKEND_PORT}/user/preview`,
-    {},
-    {
-      headers: {
-        token: localStorage.getItem("token"),
-      },
-    }
-  );
-  document.getElementById("show-courses").innerHTML = showC.data;
-}
+// async function showCourses() {
+//   const showC = await axios.post(
+//     `http://localhost:${BACKEND_PORT}/user/preview`,
+//     {},
+//     {
+//       headers: {
+//         token: localStorage.getItem("token"),
+//       },
+//     }
+//   );
+//   document.getElementById("show-courses").innerHTML = showC.data;
+// }
 // purchase a courses
 async function purchase() {
   await axios.post(
@@ -77,10 +77,10 @@ async function purchase() {
 // --------------------------------------ADMIN PAGE---------------------------------------------
 
 // --------signup--------
-async function signup() {
+async function signupA() {
   const email = document.getElementById("admin-username").value;
   const password = document.getElementById("admin-password").value;
-  const firstName = document.getElementBiId("admin-firstname").value;
+  const firstName = document.getElementById("admin-firstname").value;
   const lastName = document.getElementById("admin-lastname").value;
   await axios.post(`http://localhost:${BACKEND_PORT}/admin/signup`, {
     email,
@@ -90,7 +90,7 @@ async function signup() {
   });
 }
 // -------login--------
-async function login() {
+async function loginA() {
   const username = document.getElementById("username").value;
   const password = documednt.getElementById("password").value;
   const token = await axios.fetch(
