@@ -109,3 +109,32 @@ async function login() {
     alert("email or password is not correct");
   }
 }
+// create course
+async function createCourse() {
+  const title = document.getElementById("title").value;
+  const description = document.getElementById("description").value;
+  const price = document.getElementById("price").value;
+  const imageUrl = document.getElementById("imageURL").value;
+  await axios.post(
+    `http://localhost:${BACKEND_PORT}/admin/createcourse`,
+    {
+      headers: localStorage.getItem("token", token.data.token),
+    },
+    { title, description, price, imageUrl }
+  );
+  alert("CourseCreated Successfully");
+}
+async function editCourse() {
+  const title = document.getElementById("title").value;
+  const description = document.getElementById("description").value;
+  const price = document.getElementById("price").value;
+  const imageUrl = document.getElementById("imageURL").value;
+  await axios.post(
+    `http://localhost:${BACKEND_PORT}/admin/edit`,
+    {
+      headers: localstorage.getItem("token", token.data.token),
+    },
+    { title, description, price, imageUrl }
+  );
+  alert("course edited successfully");
+}
