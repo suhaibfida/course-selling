@@ -10,4 +10,6 @@ teachers can share their knowledge easily.
    3) JavaScript.
    4) Nodejs.
    5) Mongodb.
+   6) Zod for login page.
+   7) JWT for tokens.
     <hr>
