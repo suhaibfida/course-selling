@@ -1,3 +1,4 @@
+// show signup
 function showSignup() {
   document.getElementById("signupSection").style.display = "block";
   document.getElementById("hideLogin").style.display = "none";
@@ -10,7 +11,7 @@ function showLogin() {
   document.getElementById("arb").style.display = "none";
   document.getElementById("crb").style.display = "block";
 }
-// Login page & signup page
+// login page & signup page
 async function signup() {
   const email = document.getElementById("signU").value;
   const password = document.getElementById("signP").value;
@@ -37,16 +38,15 @@ async function login() {
     }
   );
   if (token) {
-    const tok = localStorage.setItem("token", token.data.token);
+    localStorage.setItem("token", token.data.token);
     alert("you are logged in");
-    window.location.href = "/homepage.html";
+    window.location.href = "/user-homepage.html";
     showCourses();
   } else {
     alert("email or paswword is incorrect");
   }
 }
 // show user courses on homepage
-
 async function showCourses() {
   const showC = await axios.post(
     `http://localhost:${BACKEND_PORT}/user/preview`,
@@ -74,5 +74,38 @@ async function purchase() {
   );
   alert("course bought successfully");
 }
+// --------------------------------------ADMIN PAGE---------------------------------------------
 
-// admin login
+// --------signup--------
+async function signup() {
+  const email = document.getElementById("admin-username").value;
+  const password = document.getElementById("admin-password").value;
+  const firstName = document.getElementBiId("admin-firstname").value;
+  const lastName = document.getElementById("admin-lastname").value;
+  await axios.post(`http://localhost:${BACKEND_PORT}/admin/signup`, {
+    email,
+    password,
+    firstName,
+    lastName,
+  });
+}
+// -------login--------
+async function login() {
+  const username = document.getElementById("username").value;
+  const password = documednt.getElementById("password").value;
+  const token = await axios.fetch(
+    `http://localhost${BACKEND_PORT}/admin/login`,
+    {
+      username,
+      password,
+    }
+  );
+  if (token) {
+    localStorage.setItem("token", token.data.token);
+    alert("You are logged in successfully");
+    windows.location.href = "admin-courses";
+    showAdminCourses();
+  } else {
+    alert("email or password is not correct");
+  }
+}

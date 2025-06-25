@@ -6,5 +6,4 @@ async function showCourses() {
 
   document.getElementById("cousrses").innerHTML = showC.data;
 }
-
 showCourses();
