@@ -6,10 +6,8 @@ teachers can share their knowledge easily.
  <hr>
 <h3> ⚙️Technologies used </h3>
    1) Html.
-   
    2) Css.
-   3) 
-   4) JavaScript.
-   5) Nodejs.
-   6) Mongodb.
+   3) JavaScript.
+   4) Nodejs.
+   5) Mongodb.
     <hr>
