@@ -14,9 +14,7 @@ const { CourseModel } = require("./db");
 const { PurchasesModel } = require("./db");
 
 app.use(express.static(__dirname + "/public"));
-app.get("/", (req, res) => {
-  res.sendFile(__dirname + "/public/index.html");
-});
+
 app.use("/user", userRouter);
 app.use("/course", courseRouter);
 app.use("/admin", adminRouter);
