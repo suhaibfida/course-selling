@@ -4,7 +4,7 @@ const jwt = require("jsonwebtoken");
 require("dotenv").config();
 const Jsecret = process.env.RUsecret;
 const bcrypt = require("bcrypt");
-const { UserModel, PurchasesModel } = require("../db");
+const { UserModel, PurchasesModel, CourseModel } = require("../db");
 const { z } = require("zod");
 const userRouter = Router();
 const { userMiddleware } = require("../middlewares/user");
@@ -80,7 +80,7 @@ userRouter.post("/login", async (req, res) => {
     conole.log("password incorrect");
   }
 });
-userRouter.get("/preview", userMiddleware, async (req, res) => {
+userRouter.post("/preview", userMiddleware, async (req, res) => {
   const userId = req.userId;
   const show = await PurchasesModel.find({
     userId,

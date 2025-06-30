@@ -4,6 +4,7 @@ const JSecret = process.env.UserS;
 
 function userMiddleware(req, res, next) {
   const token = req.headers.token;
+
   const verify = jwt.verify(token, JSecret);
   if (verify) {
     req.userId = verify.id;

@@ -48,6 +48,8 @@ async function login() {
 }
 // show user courses on homepage
 async function showCourses() {
+  console.log("Token in localStorage:");
+
   const showC = await axios.post(
     `http://localhost:${BACKEND_PORT}/user/preview`,
     {},
@@ -57,6 +59,8 @@ async function showCourses() {
       },
     }
   );
+
+  console.log(showC);
   document.getElementById("show-courses").innerHTML = showC.data;
 }
 // purchase a courses
