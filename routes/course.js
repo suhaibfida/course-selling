@@ -4,8 +4,6 @@ const { PurchasesModel, CourseModel } = require("../db");
 const { userMiddleware } = require("../middlewares/user");
 
 courseRouter.post("/purchase", userMiddleware, async (req, res) => {
-  console.log("in");
-  // check user paid or not
   const courseId = req.body.courseId;
   const userId = req.userId;
 
