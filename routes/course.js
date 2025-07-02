@@ -16,11 +16,8 @@ courseRouter.post("/purchase", userMiddleware, async (req, res) => {
   });
 });
 courseRouter.get("/courses", async (req, res) => {
-  const preview = await CourseModel.find({});
-
-  res.json({
-    preview,
-  });
+  const courses = await CourseModel.find({});
+  res.json(courses);
 });
 
 module.exports = {
