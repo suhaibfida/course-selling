@@ -1,6 +1,7 @@
 <html>
   <head>
     <title>Create course</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.9.0/axios.min.js"></script>
     <!-- title, description, price, imageURL -->
   </head>
   <body>
@@ -10,8 +11,10 @@
         <input id="description" type="text" placeholder="Description" />
         <input id="price" type="text" placeholder="Price" />
         <input id="imageURL" type="text" placeholder="ImageUrl" />
+        <button onclick="createCourse()">Create course</button>
       </div>
     </div>
+    <script src="js/config.js"></script>
     <script src="js/main.js"></script>
   </body>
 </html>

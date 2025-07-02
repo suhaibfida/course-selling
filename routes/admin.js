@@ -44,7 +44,6 @@ adminRouter.post("/signup", async (req, res) => {
     firstName: firstName,
     lastName: lastName,
   });
-  console.log("sc");
   console.log("account created");
 });
 adminRouter.post("/login", async (req, res) => {
@@ -57,7 +56,7 @@ adminRouter.post("/login", async (req, res) => {
       message: "email was not found",
     });
   }
-  console.log("hello2");
+
   const decrypt = await bcrypt.compare(password, response.password);
 
   if (!decrypt) {
@@ -70,17 +69,19 @@ adminRouter.post("/login", async (req, res) => {
       token: token,
     });
   }
-  console.log("hello from here");
 });
 adminRouter.post("/createcourse", adminMiddleware, async (req, res) => {
   const adminId = req.adminId;
-  const { title, description, price, imageURL } = req.body;
+  const title = req.body.title;
+  const description = req.body.description;
+  const price = req.body.price;
+  const imageURL = req.body.imageURL;
   const course = await CourseModel.create({
+    adminId,
     title,
     description,
     price,
     imageURL,
-    adminId,
   });
 
   res.json({

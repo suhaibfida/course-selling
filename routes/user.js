@@ -60,7 +60,7 @@ userRouter.post("/signup", async (req, res) => {
 
 userRouter.post("/login", async (req, res) => {
   const { email, password } = req.body;
-  console.log(email);
+
   const response = await UserModel.findOne({
     email: email,
   });

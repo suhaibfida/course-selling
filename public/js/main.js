@@ -48,8 +48,6 @@ async function login() {
 }
 // show user courses on homepage
 async function showCourses() {
-  console.log("Token in localStorage:");
-
   const showC = await axios.post(
     `http://localhost:${BACKEND_PORT}/user/preview`,
     {},
@@ -59,8 +57,6 @@ async function showCourses() {
       },
     }
   );
-
-  console.log(showC);
   document.getElementById("show-courses").innerHTML = showC.data;
 }
 // purchase a courses
@@ -113,23 +109,25 @@ async function loginA() {
   } else {
     alert("email or password is not correct");
   }
-  alert("you are in ");
-  console.log(token);
 }
 // create course
 async function createCourse() {
   const title = document.getElementById("title").value;
   const description = document.getElementById("description").value;
   const price = document.getElementById("price").value;
-  const imageUrl = document.getElementById("imageURL").value;
+  const imageURL = document.getElementById("imageURL").value;
+
   await axios.post(
     `http://localhost:${BACKEND_PORT}/admin/createcourse`,
+    { title, description, price, imageURL },
+
     {
-      headers: localStorage.getItem("token", token.data.token),
-    },
-    { title, description, price, imageUrl }
+      headers: {
+        token: localStorage.getItem("token"),
+      },
+    }
   );
-  alert("CourseCreated Successfully");
+  alert("Course Created Successfully");
 }
 // edit course
 async function editCourse() {
@@ -146,4 +144,3 @@ async function editCourse() {
   );
   alert("course edited successfully");
 }
-// showAdminCourse
