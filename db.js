@@ -29,7 +29,7 @@ const Purchases = new Schema({
 });
 const UserModel = mongoose.model("users", Users);
 const CourseModel = mongoose.model("courses", addCourse);
-const AdminModel = mongoose.model("admin", Admin);
+const AdminModel = mongoose.model("admins", Admin);
 const PurchasesModel = mongoose.model("purchase", Purchases);
 
 module.exports = {

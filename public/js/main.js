@@ -92,26 +92,29 @@ async function signupA() {
     firstName,
     lastName,
   });
+  alert("account created");
 }
 // -------login--------
 async function loginA() {
-  const username = document.getElementById("username").value;
-  const password = documednt.getElementById("password").value;
-  const token = await axios.fetch(
-    `http://localhost${BACKEND_PORT}/admin/login`,
+  const email = document.getElementById("username").value;
+  const password = document.getElementById("password").value;
+
+  const token = await axios.post(
+    `http://localhost:${BACKEND_PORT}/admin/login`,
     {
-      username,
+      email,
       password,
     }
   );
   if (token) {
     localStorage.setItem("token", token.data.token);
     alert("You are logged in successfully");
-    windows.location.href = "admin-courses";
-    showAdminCourses();
+    window.location.href = "admin-courses.html";
   } else {
     alert("email or password is not correct");
   }
+  alert("you are in ");
+  console.log(token);
 }
 // create course
 async function createCourse() {
@@ -128,6 +131,7 @@ async function createCourse() {
   );
   alert("CourseCreated Successfully");
 }
+// edit course
 async function editCourse() {
   const title = document.getElementById("title").value;
   const description = document.getElementById("description").value;
@@ -142,3 +146,4 @@ async function editCourse() {
   );
   alert("course edited successfully");
 }
+// showAdminCourse

@@ -8,6 +8,8 @@ const { CourseModel } = require("../db");
 const jwt = require("jsonwebtoken");
 const { adminMiddleware } = require("../middlewares/admin");
 const JSecret = process.env.RAsecret;
+
+// ----------------------------------------------------------------------------------------------
 adminRouter.post("/signup", async (req, res) => {
   const { email, password, firstName, lastName } = req.body;
   const admin = z.object({
@@ -28,11 +30,12 @@ adminRouter.post("/signup", async (req, res) => {
   });
   const parse = admin.safeParse(req.body);
   if (!parse.success) {
-    return res.json({
+    console.log("Zod validation failed:", parse.error.format());
+    return res.status(400).json({
       message: "Incorrect format",
+      errors: parse.error.format(),
     });
   }
-
   const hashP = await bcrypt.hash(password, 5);
 
   await AdminModel.create({
@@ -41,9 +44,8 @@ adminRouter.post("/signup", async (req, res) => {
     firstName: firstName,
     lastName: lastName,
   });
-  res.json({
-    message: "Account created successfully",
-  });
+  console.log("sc");
+  console.log("account created");
 });
 adminRouter.post("/login", async (req, res) => {
   const { email, password } = req.body;
@@ -55,7 +57,7 @@ adminRouter.post("/login", async (req, res) => {
       message: "email was not found",
     });
   }
-
+  console.log("hello2");
   const decrypt = await bcrypt.compare(password, response.password);
 
   if (!decrypt) {
@@ -68,6 +70,7 @@ adminRouter.post("/login", async (req, res) => {
       token: token,
     });
   }
+  console.log("hello from here");
 });
 adminRouter.post("/createcourse", adminMiddleware, async (req, res) => {
   const adminId = req.adminId;
@@ -104,14 +107,6 @@ adminRouter.put("/edit", adminMiddleware, async (req, res) => {
 
   res.json({
     message: "COURSE EDITED SUCCESSFULLY",
-  });
-});
-adminRouter.post("/showc", async (req, res) => {
-  const adminId = req.adminId;
-  const show = await CourseModel.find();
-  console.log(show);
-  res.json({
-    message: "All courses are on screen",
   });
 });
 module.exports = {
