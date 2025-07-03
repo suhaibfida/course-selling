@@ -17,7 +17,6 @@ async function signup() {
   const password = document.getElementById("signP").value;
   const firstName = document.getElementById("signF").value;
   const lastName = document.getElementById("signL").value;
-
   await axios.post(`http://localhost:${BACKEND_PORT}/user/signup`, {
     email,
     password,
@@ -77,8 +76,8 @@ async function purchase() {
 // --------------------------------------ADMIN PAGE---------------------------------------------
 
 // ---------------Show signup
-function showSignup() {
-  document.getElementById("show-signup").style.display = "block";
+function showadminSignup() {
+  document.getElementById("showw-signup").style.display = "block";
   hideLogin();
 }
 // hide login when signup appears
@@ -88,7 +87,7 @@ function hideLogin() {
 // when signup appears
 function showLogin() {
   document.getElementById("hide-login").style.display = "block";
-  document.getElementById("show-signup").style.display = "none";
+  document.getElementById("showw-signup").style.display = "none";
 }
 // --------signup--------
 async function signupA() {
@@ -96,6 +95,7 @@ async function signupA() {
   const password = document.getElementById("admin-password").value;
   const firstName = document.getElementById("admin-firstname").value;
   const lastName = document.getElementById("admin-lastname").value;
+
   await axios.post(`http://localhost:${BACKEND_PORT}/admin/signup`, {
     email,
     password,
@@ -104,6 +104,7 @@ async function signupA() {
   });
   alert("account created");
 }
+
 // -------login--------
 async function loginA() {
   const email = document.getElementById("username").value;
