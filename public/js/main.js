@@ -76,6 +76,20 @@ async function purchase() {
 }
 // --------------------------------------ADMIN PAGE---------------------------------------------
 
+// ---------------Show signup
+function showSignup() {
+  document.getElementById("show-signup").style.display = "block";
+  hideLogin();
+}
+// hide login when signup appears
+function hideLogin() {
+  document.getElementById("hide-login").style.display = "none";
+}
+// when signup appears
+function showLogin() {
+  document.getElementById("hide-login").style.display = "block";
+  document.getElementById("show-signup").style.display = "none";
+}
 // --------signup--------
 async function signupA() {
   const email = document.getElementById("admin-username").value;
