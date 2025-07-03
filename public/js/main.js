@@ -77,12 +77,12 @@ async function purchase() {
 
 // ---------------Show signup
 function showadminSignup() {
-  document.getElementById("showw-signup").style.display = "block";
-  hideLogin();
+  document.getElementById("showadminSignup").style.display = "block";
+  hideadminLogin();
 }
 // hide login when signup appears
 function hideadminLogin() {
-  document.getElementById("hide-login").style.display = "none";
+  document.getElementById("hideadminLogin").style.display = "none";
 }
 // when signup appears
 function showadminLogin() {
@@ -95,7 +95,6 @@ async function signupA() {
   const password = document.getElementById("admin-password").value;
   const firstName = document.getElementById("admin-firstname").value;
   const lastName = document.getElementById("admin-lastname").value;
-
   await axios.post(`http://localhost:${BACKEND_PORT}/admin/signup`, {
     email,
     password,
