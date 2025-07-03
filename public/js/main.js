@@ -81,13 +81,13 @@ function showadminSignup() {
   hideLogin();
 }
 // hide login when signup appears
-function hideLogin() {
+function hideadminLogin() {
   document.getElementById("hide-login").style.display = "none";
 }
 // when signup appears
-function showLogin() {
-  document.getElementById("hide-login").style.display = "block";
-  document.getElementById("showw-signup").style.display = "none";
+function showadminLogin() {
+  document.getElementById("hideadminLogin").style.display = "block";
+  document.getElementById("showadminSignup").style.display = "none";
 }
 // --------signup--------
 async function signupA() {
