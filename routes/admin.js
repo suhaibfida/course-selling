@@ -44,7 +44,6 @@ adminRouter.post("/signup", async (req, res) => {
     firstName: firstName,
     lastName: lastName,
   });
-  console.log("account created");
 });
 adminRouter.post("/login", async (req, res) => {
   const { email, password } = req.body;
@@ -89,27 +88,27 @@ adminRouter.post("/createcourse", adminMiddleware, async (req, res) => {
     courseId: course._id,
   });
 });
-adminRouter.put("/edit", adminMiddleware, async (req, res) => {
-  const adminId = req.adminId;
-  const { title, description, price, imageURL, courseId } = req.body;
+adminRouter.post("/edit", adminMiddleware, async (req, res) => {
+  const { title, description, price, imageURL, id } = req.body;
 
   await CourseModel.updateOne(
     {
-      adminId: adminId,
-      _id: courseId,
+      _id: id,
     },
     {
-      title,
-      description,
-      price,
-      imageURL,
+      $set: {
+        title,
+        description,
+        price,
+        imageURL,
+      },
     }
   );
-
   res.json({
     message: "COURSE EDITED SUCCESSFULLY",
   });
 });
+
 module.exports = {
   adminRouter: adminRouter,
 };

@@ -131,16 +131,20 @@ async function createCourse() {
 }
 // edit course
 async function editCourse() {
+  const id = document.getElementById("courseId").value;
   const title = document.getElementById("title").value;
   const description = document.getElementById("description").value;
   const price = document.getElementById("price").value;
-  const imageUrl = document.getElementById("imageURL").value;
+  const imageURL = document.getElementById("imageURL").value;
   await axios.post(
     `http://localhost:${BACKEND_PORT}/admin/edit`,
+
+    { id, title, description, price, imageURL },
     {
-      headers: localstorage.getItem("token", token.data.token),
-    },
-    { title, description, price, imageUrl }
+      headers: {
+        token: localStorage.getItem("token"),
+      },
+    }
   );
   alert("course edited successfully");
 }
