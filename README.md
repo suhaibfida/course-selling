@@ -20,3 +20,6 @@ teachers can share their knowledge easily.
 
 7. JWT for tokens.
 <hr>
+
+# Images
+<img width="1641" height="766" alt="image" src="https://github.com/user-attachments/assets/c7a0e0e9-a40d-4395-bf79-9fd8c552cdde" />
